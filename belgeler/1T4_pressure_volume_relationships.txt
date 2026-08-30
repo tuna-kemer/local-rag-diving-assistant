@@ -1,0 +1,13 @@
+1T4 PRESSURE-VOLUME RELATIONSHIPS
+
+Atmospheric, Hydrostatic, and Absolute Pressure: Atmospheric pressure at sea level is taken as 1 bar (1 atmosphere). The pressure caused by water is called hydrostatic pressure; every 10 meters of saltwater adds approximately 1 atm of pressure. The sum of atmospheric and hydrostatic pressure is called "absolute pressure." For example, at 20 meters depth, absolute pressure is 2 bar (hydrostatic) + 1 bar (atmospheric) = 3 bar. The increase in pressure is not linear; absolute pressure doubles in the first 10 meters, while between 10-20 meters the rate of increase drops to 1/3.
+
+Boyle's Law: As gas pressure decreases, volume increases; as pressure increases, volume decreases. Formula: V1*P1 = V2*P2. For example, a diver with 6 liters of lung volume at 1 atm would have a lung volume of 3 liters at 2 bar.
+
+Composition of Air: Nitrogen makes up the largest portion of the atmospheric mixture (78%), followed by oxygen (21%), with other gases making up about 1%.
+
+Squeeze Problems (Barotrauma): Ear barotrauma is the most common squeeze problem. Some ear equalization techniques include: the Valsalva maneuver (pinching the nose and blowing gently with the mouth closed), the Frenzel technique, the Edmonds technique, and the Toynbee technique.
+
+Expansion Problems: Expansion injuries occur during ascent when air spaces cannot equalize with ambient pressure. The golden rule on ascent is "never hold your breath." Lung barotrauma is the primary cause of serious diving injuries.
+
+Decompression Sickness: Occurs when nitrogen dissolved in the blood forms gas bubbles due to a sudden drop in ambient pressure. To prevent it, dives should be planned within the "No-Decompression Limits" of dive tables.
