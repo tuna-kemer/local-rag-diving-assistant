@@ -111,7 +111,7 @@ Retrieval quality was also benchmarked before and after switching the knowledge 
 | 1 | Direct answer | What is the maximum depth limit for a one-star diver? | 18 meters | ✅ Correct |
 | 2 | Direct answer | What is the ALFA flag used for? | "diver below, keep well clear" | ✅ Correct |
 | 3 | Direct answer | How many verified dives are required before starting guide diver training? | 50 dives | ✅ Correct |
-| 4 | Indirect / paraphrased | Why do divers wear hoods? | Heat loss through the neck (~50%) | ⚠️ Initially missed by retrieval — fixed by splitting the source chunk (see §7) |
+| 4 | Indirect / paraphrased | Why do divers wear hoods? | Heat loss through the neck (~50%) | ✅ Initially missed by retrieval — fixed by splitting the source chunk (see §7) |
 | 5 | Indirect / paraphrased | Which sea has no oxygen below 200 meters? | Black Sea, due to H₂S | ✅ Correct |
 | 6 | In-domain, unanswerable | What is the best dive site in Antalya? | "I don't know" | ✅ Correctly declined |
 | 7 | In-domain, unanswerable | How deep can a whale shark dive? | "I don't know" | ✅ Correctly declined |
@@ -120,7 +120,7 @@ Retrieval quality was also benchmarked before and after switching the knowledge 
 | 10 | Edge case | Empty input | No crash | ✅ Handled gracefully |
 | 11 | Edge case | Single word: "diving" | "I don't know" or a reasonable chunk | ⚠️ Passed the threshold but produced an overly general answer not grounded in the retrieved chunk — noted as a limitation (see §7) |
 
-**Result: 9 of 11 test cases passed outright; the 2 exceptions were investigated, and one (#4) was fixed during testing.**
+**Result: 10 of 11 test cases passed outright; the 1 exceptions were investigated, and one (#4) was fixed during testing.**
 
 ---
 
@@ -194,4 +194,4 @@ The knowledge base was built from two original document sets, translated into En
 
 ## Notes
 
-This project was completed independently by a Sabancı University Computer Science student, following a self-directed one-month curriculum based on Microsoft's local RAG tutorial and Foundry Local documentation.
+This project was built by Tuna Kemer as part of the Microsoft Azure AI Summer Program 2026 organized by Barbaros Günay, CSA Manager at Microsoft Turkey.
