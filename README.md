@@ -194,4 +194,4 @@ The knowledge base was built from two original document sets, translated into En
 
 ## Notes
 
-This project was completed independently by a Sabancı University Computer Science student, following a self-directed one-month curriculum based on Microsoft's local RAG tutorial and Foundry Local documentation.
+This project was built by Tuna Kemer as part of the Microsoft Azure AI Summer Program 2026 organized by Barbaros Günay, CSA Manager at Microsoft Turkey.
