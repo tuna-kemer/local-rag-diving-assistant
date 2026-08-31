@@ -23,9 +23,12 @@
 
   body {
     margin: 0;
-    background: var(--deep);
-    background-image:
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(63,167,150,0.10), transparent 60%);
+    background:
+      linear-gradient(rgba(6,12,18,0.82), rgba(6,12,18,0.92)),
+      url('/static/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--foam);
     font-family: 'IBM Plex Sans', sans-serif;
     min-height: 100vh;
