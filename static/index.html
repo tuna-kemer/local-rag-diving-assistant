@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiveBuddy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0B1620;
+    --panel: #12232F;
+    --panel-line: #22384A;
+    --foam: #E8EEF2;
+    --foam-dim: #91A6B3;
+    --signal: #06038D;
+    --signal-dim: #1A16C4;
+    --dive-teal: #3FA796;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--deep);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(63,167,150,0.10), transparent 60%);
+    color: var(--foam);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 640px;
+    padding: 40px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 6px;
+  }
+
+  .gauge {
+    flex-shrink: 0;
+    animation: rise 900ms ease-out;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 34px;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--foam);
+  }
+
+  h1 span { color: var(--signal); }
+
+  .tagline {
+    font-size: 14.5px;
+    color: var(--foam-dim);
+    margin: 4px 0 0;
+    line-height: 1.5;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--panel-line);
+    margin: 24px 0 20px;
+  }
+
+  #log {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 20px;
+  }
+
+  .row { display: flex; }
+  .row.user { justify-content: flex-end; }
+  .row.assistant { justify-content: flex-start; }
+
+  .bubble {
+    max-width: 82%;
+    padding: 12px 16px;
+    border-radius: 3px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .row.user .bubble {
+    background: var(--signal);
+    color: var(--foam);
+    border-bottom-right-radius: 0;
+  }
+
+  .row.assistant .bubble {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-bottom-left-radius: 0;
+  }
+
+  .sources {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .source-tag {
+    font-size: 11.5px;
+    color: var(--dive-teal);
+    background: rgba(63,167,150,0.12);
+    border: 1px solid rgba(63,167,150,0.35);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .pending .bubble {
+    color: var(--foam-dim);
+    font-style: italic;
+  }
+
+  form {
+    display: flex;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--panel-line);
+  }
+
+  input[type="text"] {
+    flex: 1;
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    color: var(--foam);
+    padding: 13px 15px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    outline: none;
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--signal-dim);
+  }
+
+  input[type="text"]::placeholder { color: var(--foam-dim); }
+
+  button {
+    background: var(--signal);
+    color: var(--foam);
+    border: none;
+    padding: 0 22px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  button:hover { background: var(--signal-dim); }
+  button:disabled { opacity: 0.5; cursor: default; }
+
+  .empty-state {
+    color: var(--foam-dim);
+    font-size: 14px;
+    padding: 20px 0;
+    line-height: 1.6;
+  }
+
+  .empty-state strong { color: var(--foam); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="gauge" width="46" height="46" viewBox="0 0 46 46" fill="none">
+      <rect x="5" y="13" width="25" height="21" rx="10" stroke="#3FA796" stroke-width="2"/>
+      <path d="M13 23 Q17.5 27 22 23" stroke="#3FA796" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M5 18 Q0 20 1.5 27" stroke="#3FA796" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M30 17 L38 17 Q42.5 17 42.5 12.5 L42.5 7" stroke="#06038D" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="42.5" cy="5" r="2.5" fill="#06038D"/>
+    </svg>
+    <div>
+      <h1>Dive<span>Buddy</span></h1>
+      <p class="tagline">No internet, no problem — just ask and DiveBuddy digs through the logs.</p>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <div id="log">
+    <div class="empty-state">
+      Ask about certification limits, equipment, physics, safety procedures, or marine life. <strong>DiveBuddy</strong> only answers from the documents it was trained on, and says so when it doesn't know.
+    </div>
+  </div>
+
+  <form id="askForm">
+    <input type="text" id="question" placeholder="Ask a question" autocomplete="off">
+    <button type="submit" id="sendBtn">Ask</button>
+  </form>
+</div>
+
+<script>
+  const log = document.getElementById('log');
+  const form = document.getElementById('askForm');
+  const input = document.getElementById('question');
+  const sendBtn = document.getElementById('sendBtn');
+  let emptyState = document.querySelector('.empty-state');
+
+  function addBubble(role, text) {
+    if (emptyState) { emptyState.remove(); emptyState = null; }
+    const row = document.createElement('div');
+    row.className = 'row ' + role;
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    log.appendChild(row);
+    log.scrollTop = log.scrollHeight;
+    return row;
+  }
+
+  function addSources(row, sources) {
+    if (!sources || sources.length === 0) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'sources';
+    sources.forEach(s => {
+      const tag = document.createElement('span');
+      tag.className = 'source-tag';
+      tag.textContent = s;
+      wrap.appendChild(tag);
+    });
+    row.querySelector('.bubble').appendChild(wrap);
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+
+    addBubble('user', question);
+    input.value = '';
+    sendBtn.disabled = true;
+
+    const pendingRow = addBubble('assistant', 'Checking the logbook...');
+    pendingRow.classList.add('pending');
+
+    try {
+      const res = await fetch('/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+      const data = await res.json();
+      pendingRow.classList.remove('pending');
+      pendingRow.querySelector('.bubble').textContent = data.answer;
+      addSources(pendingRow, data.sources);
+    } catch (err) {
+      pendingRow.classList.remove('pending');
+      pendingRow.querySelector('.bubble').textContent = 'Connection error. Is the server still running?';
+    }
+
+    sendBtn.disabled = false;
+    input.focus();
+  });
+</script>
+</body>
+</html>
