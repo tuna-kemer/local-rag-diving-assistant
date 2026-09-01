@@ -104,7 +104,7 @@ Manual testing covered five categories: direct-answer questions, indirect/paraph
 | Indirect / paraphrased | "Why do divers wear hoods?" | ⚠️ Initially missed by retrieval, fixed (see §7) |
 | In-domain, unanswerable | "What is the best dive site in Antalya?" | ✅ Correctly declined |
 | Fully unrelated | "What is the capital of France?" | ✅ Correctly declined |
-| Edge case | Empty input / single word | ✅ No crash; single-word queries can produce overly general answers (see §7) |
+| Edge case | Empty input / single word | ✅ No crash; single-word queries can produce overly general answers |
 
 Retrieval quality was also benchmarked before and after switching the knowledge base from Turkish to English: best-match cosine similarity on a comparable question rose from **0.733 to 0.831**.
 
@@ -115,7 +115,7 @@ Retrieval quality was also benchmarked before and after switching the knowledge 
 | 1 | Direct answer | What is the maximum depth limit for a one-star diver? | 18 meters | ✅ Correct |
 | 2 | Direct answer | What is the ALFA flag used for? | "diver below, keep well clear" | ✅ Correct |
 | 3 | Direct answer | How many verified dives are required before starting guide diver training? | 50 dives | ✅ Correct |
-| 4 | Indirect / paraphrased | Why do divers wear hoods? | Heat loss through the neck (~50%) | ⚠️ Initially missed by retrieval — fixed by splitting the source chunk (see §7) |
+| 4 | Indirect / paraphrased | Why do divers wear hoods? | Heat loss through the neck (~50%) | ✅ Initially missed by retrieval — fixed by splitting the source chunk (see §7) |
 | 5 | Indirect / paraphrased | Which sea has no oxygen below 200 meters? | Black Sea, due to H₂S | ✅ Correct |
 | 6 | In-domain, unanswerable | What is the best dive site in Antalya? | "I don't know" | ✅ Correctly declined |
 | 7 | In-domain, unanswerable | How deep can a whale shark dive? | "I don't know" | ✅ Correctly declined |
@@ -198,4 +198,4 @@ The knowledge base was built from two original document sets, translated into En
 
 ## Notes
 
-This project was completed independently by a Sabancı University Computer Science student, following a self-directed one-month curriculum based on Microsoft's local RAG tutorial and Foundry Local documentation.
+This project was built by Tuna Kemer as part of the Microsoft Azure AI Summer Program 2026 organized by Barbaros Günay, CSA Manager at Microsoft Turkey.
