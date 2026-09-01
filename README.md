@@ -1,6 +1,6 @@
 # DiveBuddy — A Local RAG Assistant Built with Microsoft Foundry Local
 
-**Independent Summer Project | Summer 2026**
+**Microsoft Azure AI Summer Program 2026**
 
 ---
 
